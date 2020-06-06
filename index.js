@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const token = 'NjgwMzQwODUxNDI3Mzc3MTU2.Xk-e0A.cyJuFQ06gV3cKRG4lMCcdgeKVGc';
+const token = require('./token.js').token;
 
 var words = [1][1];
 
