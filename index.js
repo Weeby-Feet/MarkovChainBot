@@ -11,13 +11,23 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-//Split the message words up into an array
+  //Split the message words up into an array
+  messageArr = message.content.split(" ");
 
-//Step through the array
+  //Step through the array
+  for(i = 0; i < messageArr.size(); i++) {
 
-//Determine if the current word is already in the bot's memory
+    //Determine if the current word is already in the bot's memory
+    var contains = messageArr.includes(words[i]);
 
-//If not, add it
+    //If not, add it
+    if(!contains) {
+      //Add word
+    }
+
+    //Do other things
+
+  }
 
 });
 
