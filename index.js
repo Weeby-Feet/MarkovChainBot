@@ -12,11 +12,13 @@ var chain = new Array();
 
 bot.on('ready', () => {
   console.log('Bot is ready to do some Markoving');
-  //Control array entry to ensure code knows the chain array is 2 dimensional
+  //Dummy array entry to ensure code knows the chain array is 2 dimensional
   chain.push(new Array("."));
 });
 
 bot.on('message', message => {
+
+  var index;
 
   //Split the message words up into an array
   messageArr = message.content.split(" ");
@@ -28,8 +30,9 @@ bot.on('message', message => {
 
     //Determine if the current word is already in the bot's memory
     for(j = 0; j < chain.length; j++) {
-      if(chain[j] == messageArr[i]) {
+      if(chain[j][0] == messageArr[i]) {
         contains = true;
+        index = j;
       }
     }
 
@@ -37,6 +40,9 @@ bot.on('message', message => {
     if(contains == false) {
       //Add word
       chain.push(new Array(messageArr[i]));
+    }
+    else {
+      chain[index].push(messageArr[i+1]);
     }
 
   }
