@@ -39,7 +39,7 @@ bot.on('message', message => {
     //If not, add it
     if(contains == false) {
       //Add word
-      chain.push(new Array(messageArr[i]));
+      chain.push(new Array(messageArr[i], messageArr[i+1]));
     }
     //Otherwise, add the trailing word since the current word is already in the chain
     else {
