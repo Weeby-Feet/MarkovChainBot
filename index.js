@@ -13,10 +13,13 @@ var chain = new Array();
 bot.on('ready', () => {
   console.log('Bot is ready to do some Markoving');
   //Dummy array entry to ensure code knows the chain array is 2 dimensional
-  chain.push(new Array("."));
+  chain.push(new Array(""));
 });
 
 bot.on('message', message => {
+
+  if(message.author.bot) return;
+  if(message.content.toLowerCase().includes("mark")) genText(message.channel);
 
   var index;
 
@@ -38,7 +41,7 @@ bot.on('message', message => {
 
     //If not, add it
     if(contains == false) {
-      //Add word
+      //Add word, and the trailing word to the chain
       chain.push(new Array(messageArr[i], messageArr[i+1]));
     }
     //Otherwise, add the trailing word since the current word is already in the chain
@@ -49,6 +52,8 @@ bot.on('message', message => {
   }
 
   console.log(chain);
+
+  //genText();
 
 });
 
@@ -63,8 +68,37 @@ function expandArray(arr) {
 }
 
 //Function for generating output using the chain constructed above
-function genText() {
+function genText(channel) {
+  var output = "";
+  var row;
+  var col;
 
+  while(true) {
+
+    row = randInt(chain.length);
+    col = randInt(chain[row].length);
+
+    var temp = chain[row][col];
+
+    if(temp == undefined && output != "") {
+      break;
+    }
+    else if(temp == undefined && output == "") {
+      output += "";
+    }
+    else if(temp == "") {
+      output += "";
+    }
+    else {
+      output += temp + " ";
+    }
+  }
+  //DEBUGGING
+  // console.log("Output: " + output);
+  // console.log("Row: " + row);
+  // console.log("Col: " + col);
+
+  channel.send(output);
 }
 
 bot.login(token);
