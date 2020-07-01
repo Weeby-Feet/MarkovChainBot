@@ -41,6 +41,7 @@ bot.on('message', message => {
       //Add word
       chain.push(new Array(messageArr[i]));
     }
+    //Otherwise, add the trailing word since the current word is already in the chain
     else {
       chain[index].push(messageArr[i+1]);
     }
@@ -56,10 +57,12 @@ function randInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+//Function might not be needed
 function expandArray(arr) {
 
 }
 
+//Function for generating output using the chain constructed above
 function genText() {
 
 }
